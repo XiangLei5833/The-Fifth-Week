@@ -23,3 +23,7 @@ def create_app():
         for key in new_content:
             app.config[key.upper()] = new_content[key]
     return app
+
+if __name__ == '__main__':
+    ca = create_app()
+    print(ca)
