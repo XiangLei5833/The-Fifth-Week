@@ -4,10 +4,13 @@
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+<<<<<<< HEAD
 from redis import StrictRedis, RedisError
 from rmon.common.rest import RestException
 from marshmallow import (Schema, fields, validate, post_load, 
         validates_schema, ValidationError)
+=======
+>>>>>>> origin/master
 
 db = SQLAlchemy()
 
@@ -24,8 +27,13 @@ class Server(db.Model):
     host = db.Column(db.String(15))
     port = db.Column(db.Integer, default=6379)
     password = db.Column(db.String())
+<<<<<<< HEAD
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+=======
+    update_at = db.Column(db.DateTime, default=datetime.utcnow)
+    create_at = db.Column(db.DateTime, default=datetime.utcnow)
+>>>>>>> origin/master
     
     def __repr__(self):
         return '<Server(name=%s)>' % self.name
@@ -40,6 +48,7 @@ class Server(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+<<<<<<< HEAD
     @property
     def redis(self):
         return StrictRedis(host=self.host, port=self.port, 
@@ -99,3 +108,5 @@ class ServerSchema(Schema):
             for key in data:
                 setattr(instance, key, data[key])
             return instance
+=======
+>>>>>>> origin/master
