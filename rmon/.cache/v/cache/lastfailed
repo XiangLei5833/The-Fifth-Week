@@ -1,0 +1,4 @@
+{
+  "tests/test_models.py::TestServer::()::test_delete": true,
+  "tests/test_models.py::TestServer::()::test_save": true
+}
