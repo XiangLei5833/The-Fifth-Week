@@ -4,23 +4,37 @@ from rmon.app import create_app
 from rmon.models import Server
 from rmon.models import db as database
 
+
 @pytest.fixture
 def app():
-    """ Flask app"""
+    """ Flask app
+    """
     return create_app()
+
 
 @pytest.yield_fixture
 def db(app):
-    """ 数据库 """
+    """数据库
+    """
     with app.app_context():
         database.create_all()
-        yield db
+        yield database
         database.drop_all()
+
+
+@pytest.yield_fixture
+def client(app):
+    """测试客户端
+    """
+    with app.test_client() as client:
+        yield client
+
 
 @pytest.fixture
 def server(db):
-    """ 测试 Redis 服务器记录"""
+    """测试 Redis 服务器记录
+    """
     server = Server(name='redis_test', description='this is a test record',
-            host='127.0.0.1', port='6379')
+             host='127.0.0.1', port='6379')
     server.save()
     return server
